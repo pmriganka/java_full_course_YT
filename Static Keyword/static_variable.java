@@ -28,7 +28,7 @@ public class static_variable
 
         Mobile mobile2 = new Mobile();
         mobile2.brand = "Samsung";
-    mobile2.price = 2000;
+        mobile2.price = 2000;
         mobile2.name = "Galaxy";
         mobile2.display();
 
