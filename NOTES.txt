@@ -1,4 +1,12 @@
 
 1. "println" belongs to 'PrintStream' class
 
-2. 
+2.  Collection API - Concetp
+    Collection - Interface
+    Collections - Classs
+
+3. Types of For Loops
+    - numbers.forEach(n -> System.out.println(n));
+    - for(int n : numbers)                     * The array will give you the value and it goes to n
+    - for(int i = 0; i < numbers.size(); i++)  * It goes to the array to get the value
+
