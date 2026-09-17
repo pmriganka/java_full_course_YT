@@ -10,3 +10,61 @@
     - for(int n : numbers)                     * The array will give you the value and it goes to n
     - for(int i = 0; i < numbers.size(); i++)  * It goes to the array to get the value
 
+MAVEN
+
+For Normal applciation - 
+mvn archetype:generate -DgroupId=com.example -DartifactId=my-app 
+-DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -DarchetypeVersion=1.0
+
+For webapp
+mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp 
+-DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false -DarchetypeVersion=1.0
+
+ archetype:generate - using geenrate template archetype to generate a single project. Unit of Task
+ -DgroupId=com.example - domain and name of the company. REverse domain name
+ -DartifactId=my-app - name of the project
+ -DarchetypeArtifactId=maven-archetype-quickstart - simple standalone java project that creates a jar file
+ -DinteractiveMode=false - Do not use any parameters
+
+ java_full_course_YT\MAVEN\my-app\pom.xml - Will do whatever you want to do with the project or interact with Maven
+
+ C:\USERS\PAULM5\ONEDRIVE - DELL TECHNOLOGIES\DESKTOP\PERSONAL_WORK_AND_DEV\JAVA_YT_LEARNING\JAVA_FULL_COURSE_YT\MAVEN\MY-APP
+└───src
+    ├───main
+    │   └───java
+    │       └───com
+    │           └───example
+    └───test
+        └───java
+            └───com
+                └───example
+
+- Edit the pom.xml file tell maven what to use ( Project Object Model )
+Maven also creates "Effective POM" (Super POM)
+
+- mvn compile - compile the project and create a target folder , also does testing
+- mvn clean - Removes the target folder
+- mvn package - Creates a jar file in the target folder, compile ,test and create the package
+- mvn test - Runs the tests
+
+- mvn clean package ( jar file , if webproject war file )
+
+Maven Repository
+- Central Repository - https://mvnrepository.com/ , lakhs of Maven Dependencies are there
+- Remote Repository - Maintained Internal or private repositories by MNC
+
+All the dependencies in local repositery are in ".m2\repository" hidden  files
+
+Maven LIFECYCLE
+Validate -> compile -> test -> package -> verify -> install -> deploy
+
+
+GRADLE
+
+gradle init - To start the build
+gradlew.bat run - Need ot to have gradle install in the machine
+build.gradle - every dependency , how we want the build to be
+gradle clean - same as maven clean
+
+JUNIT
+Junit5 - Jupyter Testing Framework
