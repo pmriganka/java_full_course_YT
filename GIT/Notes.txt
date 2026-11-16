@@ -1,0 +1,70 @@
+
+PROBLEM:
+
+Performed a commit on the wrong branch
+
+SOLUTION:
+
+1. Go to the wrong branch
+2. Unod the commit but keep the file changes using
+
+    git reset HEAD~1 (This removes the commit and leaves the files modified in your working directory.)
+
+3. Switch to the correct branch
+4. If you cannot switch branches
+
+    git checkout -b <new-branch-name>git stash push -u -m "Move changes to fornax_upgrade_downgrade_second_part"
+    (-u includes the untracked files (.JSON, output.log, etc.)
+
+5. Now switch to the original branch 
+6. Apply the stash using
+
+    git stash pop
+
+7. if you do not get the modified files after stash pop this means the files are already committed
+8 Check the aboce using
+
+    git diff ( If nothing shown it mean your working directory matches the HEAD)
+    git reflog -10 ( Look for the commit you reset away)
+    git log --oneline --decorate -10
+
+
+Example
+
+ASIA-PACIFIC+paulm5@W-DV0FJB4 MINGW64 ~/projects/powermax/QE-PLUGINGS/QE-Plugins/testscripts/data_services/eds/rockmaple (usr/paulm5/fornax_upgrade_downgrade_second_part)
+$ git diff
+
+ASIA-PACIFIC+paulm5@W-DV0FJB4 MINGW64 ~/projects/powermax/QE-PLUGINGS/QE-Plugins/testscripts/data_services/eds/rockmaple (usr/paulm5/fornax_upgrade_downgrade_second_part)
+$ git reflog -10
+d69f35b2c (HEAD -> usr/paulm5/fornax_upgrade_downgrade_second_part) HEAD@{0}: checkout: moving from usr/paulm5/hwcomp_swcomp_ckd to usr/paulm5/fornax_upgrade_downgrade_second_part
+efbf9b09b (origin/usr/paulm5/hwcomp_swcomp_ckd, usr/paulm5/hwcomp_swcomp_ckd) HEAD@{1}: reset: moving to HEAD
+efbf9b09b (origin/usr/paulm5/hwcomp_swcomp_ckd, usr/paulm5/hwcomp_swcomp_ckd) HEAD@{2}: reset: moving to HEAD~1
+d69f35b2c (HEAD -> usr/paulm5/fornax_upgrade_downgrade_second_part) HEAD@{3}: checkout: moving from usr/paulm5/fornax_upgrade_downgrade_second_part to usr/paulm5/hwcomp_swcomp_ckd
+d69f35b2c (HEAD -> usr/paulm5/fornax_upgrade_downgrade_second_part) HEAD@{4}: checkout: moving from usr/paulm5/hwcomp_swcomp_ckd to usr/paulm5/fornax_upgrade_downgrade_second_part
+d69f35b2c (HEAD -> usr/paulm5/fornax_upgrade_downgrade_second_part) HEAD@{5}: commit: Remaining changes to include Cronus
+efbf9b09b (origin/usr/paulm5/hwcomp_swcomp_ckd, usr/paulm5/hwcomp_swcomp_ckd) HEAD@{6}: commit: Full automation of TC142255 in Rockmaple
+4a08f57c7 (origin/usr/paulm5/glacial_comp_dedup_inter, usr/paulm5/glacial_comp_dedup_inter) HEAD@{7}: checkout: moving from usr/paulm5/glacial_comp_dedup_inter to usr/paulm5/hwcomp_swcomp_ckd
+4a08f57c7 (origin/usr/paulm5/glacial_comp_dedup_inter, usr/paulm5/glacial_comp_dedup_inter) HEAD@{8}: commit: TC142814_dedup_glacial_comrpesison_interaction
+9d27c6e6d (origin/usr/paulm5/fornax_fw_gd_ug_ares, usr/paulm5/fornax_fw_gd_ug_ares) HEAD@{9}: checkout: moving from usr/paulm5/fornax_fw_gd_ug_ares to usr/paulm5/glacial_comp_dedup_inter
+
+ASIA-PACIFIC+paulm5@W-DV0FJB4 MINGW64 ~/projects/powermax/QE-PLUGINGS/QE-Plugins/testscripts/data_services/eds/rockmaple (usr/paulm5/fornax_upgrade_downgrade_second_part)
+$ git log --oneline --decorate -10
+d69f35b2c (HEAD -> usr/paulm5/fornax_upgrade_downgrade_second_part) Remaining changes to include Cronus
+efbf9b09b (origin/usr/paulm5/hwcomp_swcomp_ckd, usr/paulm5/hwcomp_swcomp_ckd) Full automation of TC142255 in Rockmaple
+4a08f57c7 (origin/usr/paulm5/glacial_comp_dedup_inter, usr/paulm5/glacial_comp_dedup_inter) TC142814_dedup_glacial_comrpesison_interaction
+9d27c6e6d (origin/usr/paulm5/fornax_fw_gd_ug_ares, usr/paulm5/fornax_fw_gd_ug_ares) Set executable permissions on TC_142212 scripts
+27293725a script for TC142212 to downgrade upgrade Fornax FW for Ares
+411fc83bf (origin/master, origin/HEAD, master) Merge pull request #3922 from VMAX/usr/randob/mops-syscall-testing
+34a6591a1 Updated 141592 script, confirmed steps 1-9 pass
+c897d0fe7 Merge pull request #3921 from VMAX/usr/pellej2/errors_new_920c
+97c8bc79e Merge pull request #3920 from VMAX/usr/osullc23/disk_info_fix
+7d06b7403 Change subf clone entry log message from info to debug level
+
+
+9. Check the commit stats
+
+    git show --name-only d69f35b2c
+
+10. git push origin branch
+
+
